@@ -1,57 +1,52 @@
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+import pygame
+import sys
 
-# Function to animate a moving shape
-def animate_shape(shape, motion_style):
-    fig, ax = plt.subplots()
-    ax.set_xlim(0, 10)
-    ax.set_ylim(0, 10)
-    ax.set_aspect('equal', adjustable='box')
-    ax.grid(True)
+# Initialize Pygame
+pygame.init()
 
-    # Define the initial position and velocity of the shape
-    if shape == 'rectangle':
-        rect = plt.Rectangle((1, 5), 2, 1, color='b')
-        ax.add_patch(rect)
-        obj = rect
-    elif shape == 'circle':
-        circle = plt.Circle((1, 5), 0.5, color='b')
-        ax.add_patch(circle)
-        obj = circle
-    else:
-        print("Invalid shape type.")
-        return
+# Set up display
+width, height = 800, 600
+window = pygame.display.set_mode((width, height))
+pygame.display.set_caption('Moving Circle Animation')
 
-    # Define the animation update function
-    def update(frame):
-        if motion_style == 'linear':
-            # Linear motion (constant velocity)
-            obj.set_xy((1 + frame * 0.5, 5))  # Move along x-axis
-        elif motion_style == 'bounce':
-            # Bouncing motion (reverses direction at boundaries)
-            x, y = obj.center
-            if x >= 9.5 or x <= 0.5:
-                obj.velocity[0] *= -1
-            obj.center = (x + obj.velocity[0], y)
+# Define colors
+black = (0, 0, 0)
+white = (255, 255, 255)
 
-        return obj,
+# Initial position of the circle
+x, y = width // 2, height // 2
+radius = 20
+dx, dy = 5, 5  # Movement step
 
-    ani = animation.FuncAnimation(fig, update, frames=20, interval=100, blit=True)
-    plt.show()
+# Run the game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
-# Main function to prompt user for animation parameters
-def main():
-    # Prompt user for the type of shape (rectangle or circle)
-    shape_type = input("Enter shape type (rectangle or circle): ").lower()
+    # Move the circle
+    x += dx
+    y += dy
 
-    # Prompt user for the animation style (linear or bounce)
-    motion_style = input("Enter motion style (linear or bounce): ").lower()
+    # Bounce the circle off the edges
+    if x - radius < 0 or x + radius > width:
+        dx = -dx
+    if y - radius < 0 or y + radius > height:
+        dy = -dy
 
-    # Validate user input and start animation
-    if shape_type in ['rectangle', 'circle'] and motion_style in ['linear', 'bounce']:
-        animate_shape(shape_type, motion_style)
-    else:
-        print("Invalid input. Please choose valid shape type (rectangle or circle) and motion style (linear or bounce).")
+    # Fill the screen with black
+    window.fill(black)
 
-if __name__ == "__main__":
-    main()
+    # Draw the circle
+    pygame.draw.circle(window, white, (x, y), radius)
+
+    # Update the display
+    pygame.display.flip()
+
+    # Cap the frame rate
+    pygame.time.Clock().tick(60)
+
+# Quit Pygame
+pygame.quit()
+sys.exit()
