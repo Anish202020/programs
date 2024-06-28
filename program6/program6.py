@@ -10,7 +10,7 @@ window = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Moving Circle & Rectangle Animation')
 
 # Define colors
-black = (0, 0, 0)
+blue = (30, 144, 255)
 white = (255, 255, 255)
 
 # Initial position of the circle
@@ -49,11 +49,11 @@ while running:
 
 
     # Fill the screen with black
-    window.fill(black)
+    window.fill(white)
 
     # Draw the circle 
-    pygame.draw.circle(window, white, (x, y), radius)
-    pygame.draw.rect(window, white, (rect_x, rect_y,rect_width,rect_height))
+    pygame.draw.circle(window, blue, (x, y), radius)
+    pygame.draw.rect(window, blue, (rect_x, rect_y,rect_width,rect_height))
 
     # Update the display
     pygame.display.flip()
