@@ -40,3 +40,7 @@ If you would like to contribute to this repository, please follow these steps:
 3. Commit your changes (`git commit -m 'Add new feature'` )
 4. Push to the branch (`git push origin feature-branch` )
 5. Create a new Pull Request
+
+## Contact
+For any questions or feedback, please contact Anish Kumar at anishkumarbdmi@gmail.com.
+
