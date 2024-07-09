@@ -1,6 +1,7 @@
 #Rotation and scaling of image
 import cv2
 import numpy as np
+
 def translate_image(image, dx, dy):
  rows, cols = image.shape[:2]
  translation_matrix = np.float32([[1, 0, dx], [0, 1, dy]])
