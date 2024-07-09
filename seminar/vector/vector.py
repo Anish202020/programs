@@ -1,7 +1,7 @@
 import svgwrite
 
 # Create an SVG drawing
-dwg = svgwrite.Drawing('example.svg', profile='tiny')
+dwg = svgwrite.Drawing('nature.svg', profile='tiny')
 
 # Add a circle
 dwg.add(dwg.circle(center=(50, 50), r=40, stroke=svgwrite.rgb(10, 10, 16, '%'), fill='red'))

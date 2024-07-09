@@ -1,7 +1,7 @@
 from PIL import Image
 
 # Open an existing image
-image = Image.open('example.jpg')
+image = Image.open('nature.jpeg')
 
 # Display original image
 image.show()
