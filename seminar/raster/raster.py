@@ -1,22 +1,32 @@
 from PIL import Image
+import matplotlib.pyplot as plt
 
 # Open an existing image
 image = Image.open('nature.jpeg')
 
-# Display original image
-image.show()
-
 # Convert the image to grayscale
 gray_image = image.convert('L')
-gray_image.show()
 
 # Resize the image
 resized_image = image.resize((200, 200))
-resized_image.show()
 
 # Rotate the image
 rotated_image = image.rotate(45)  # Rotate 45 degrees
-rotated_image.show()
+
+# Prepare a list of images to display
+images = [image, gray_image, resized_image, rotated_image]
+titles = ["Original", "Grayscale", "Resized", "Rotated"]
+
+# Set up the plot
+fig, axes = plt.subplots(1, 4, figsize=(20, 5))
+
+for ax, img, title in zip(axes, images, titles):
+    ax.imshow(img, cmap='gray' if img.mode == 'L' else None)
+    ax.set_title(title)
+    ax.axis('off')
+
+plt.tight_layout()
+plt.show()
 
 # Save the modified images
 gray_image.save('gray_example.jpg')
