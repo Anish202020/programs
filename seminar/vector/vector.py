@@ -15,4 +15,4 @@ dwg.add(dwg.line(start=(0, 0), end=(150, 150), stroke=svgwrite.rgb(10, 10, 16, '
 # Save the SVG file
 dwg.save()
 
-print("Vector image created and saved as 'example.svg'")
+print("Vector image created and saved as 'nature.svg'")
